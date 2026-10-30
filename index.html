@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Odra w kadrze: Dni Morza 2009</title>
+<meta name="description" content="Dni Morza 2009, czyli rzeka, motorówki i most, który pływa">
+<meta property="og:title" content="Odra w kadrze"><meta property="og:description" content="Dni Morza 2009, czyli rzeka, motorówki i most, który pływa">
+<meta property="og:image" content="https://gladiator2201.github.io/dnimorza2009-rzeka/img/190.jpg"><meta property="og:url" content="https://gladiator2201.github.io/dnimorza2009-rzeka/">
+<meta name="theme-color" content="#111">
+<style>@font-face{font-family:'Abril Fatface';src:url(fonts/AbrilFatface-Regular.woff) format('woff');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Courier Prime';src:url(fonts/CourierPrime-Regular.woff) format('woff');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Courier Prime';src:url(fonts/CourierPrime-Bold.woff) format('woff');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:'Caveat';src:url(fonts/Caveat.woff) format('woff');font-weight:400 700;font-style:normal;font-display:swap}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{color:var(--ink);background:var(--bg);-webkit-tap-highlight-color:transparent;user-select:none}
+#bg{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+#bg svg.gd{position:absolute;color:var(--gc);opacity:var(--go);fill:none;stroke:currentColor;stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round;animation:fl 14s ease-in-out infinite alternate}
+@keyframes fl{from{transform:rotate(var(--r)) translateY(0)}to{transform:rotate(calc(var(--r) + 4deg)) translateY(-14px)}}
+#deco{position:fixed;inset:0;pointer-events:none;z-index:1}
+#stage{position:fixed;inset:0 0 var(--barh) 0;z-index:2;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.slide{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.2vh 3vw;text-align:center}
+.slide img{display:block;width:min(92vw,calc((100dvh - var(--R))*4/3));height:auto;aspect-ratio:4/3;object-fit:contain;background:#111}
+.cap{max-width:min(92vw,62rem);font-size:clamp(15px,2.3vh,30px);line-height:1.35;margin-top:1.4vh}
+.chap{font-size:clamp(12px,1.7vh,20px);letter-spacing:.12em;text-transform:uppercase;opacity:.75;margin-bottom:1vh}
+.btn{font:inherit;cursor:pointer;border:0;border-radius:999px;padding:.7em 1.6em;font-size:clamp(16px,2.4vh,28px);background:var(--acc);color:var(--accink);box-shadow:0 6px 18px rgba(0,0,0,.35);margin:.4em}
+.btn:hover,.btn:focus-visible{filter:brightness(1.12);outline:3px solid var(--ink);outline-offset:3px}
+a.btn{text-decoration:none;display:inline-block}
+.hint{font-size:clamp(12px,1.7vh,18px);opacity:.7;margin-top:1.2vh}
+#bar{position:fixed;left:0;right:0;bottom:0;height:var(--barh);z-index:5;display:flex;align-items:center;justify-content:center;gap:.4rem;padding:0 .5rem;background:var(--barbg);font-size:clamp(13px,1.8vh,19px)}
+#bar button{font:inherit;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:999px;padding:.35em .9em;cursor:pointer;white-space:nowrap}
+#bar button:hover,#bar button:focus-visible{background:var(--line)}
+#bar #bPrev,#bar #bNext{font-size:1.3em;padding:.1em .8em}
+#cnt{min-width:6.5em;text-align:center;opacity:.85}
+#fx{position:fixed;inset:0;z-index:4;pointer-events:none}
+#toc{position:fixed;inset:0;z-index:8;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center}
+#toc[hidden]{display:none}
+#toc .in{background:var(--tocbg);color:var(--ink);padding:1.5rem 2rem;border-radius:12px;max-width:92vw;max-height:84vh;overflow:auto;text-align:left;font-size:clamp(16px,2.3vh,24px)}
+#toc h3{margin-bottom:.6em}
+#toc li{list-style:none;margin:.35em 0;cursor:pointer;padding:.25em .5em;border-radius:6px}
+#toc li:hover{background:var(--line)}
+/* przejscia */
+.flash{position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,#fff 0,#fff 45%,rgba(255,250,220,.9) 70%);opacity:0}
+.flash.go{animation:flash .9s ease-out forwards}
+@keyframes flash{0%{opacity:0}8%{opacity:1}30%{opacity:.95}100%{opacity:0}}
+.puff{position:absolute;left:8%;top:6%;width:22vmin;height:22vmin;border-radius:50%;background:radial-gradient(circle,rgba(230,230,230,.85),rgba(200,200,200,.4) 50%,transparent 70%);opacity:0}
+.puff.go{animation:puff 1.4s ease-out forwards}
+@keyframes puff{0%{opacity:0;transform:scale(.3)}20%{opacity:.9}100%{opacity:0;transform:scale(1.8) translateY(-14vh)}}
+.iris{position:absolute;inset:0;width:100%;height:100%}
+.iris path{fill:#0b0b0b}.iris line{stroke:#2a2a2a;stroke-width:1.2}
+.strip{position:absolute;top:-5%;bottom:-5%;width:150vw;left:100vw;background:#2a1a0e;animation:strip 1s cubic-bezier(.6,0,.4,1) forwards;display:flex;gap:4vw;align-items:center;padding:0 4vw;box-shadow:0 0 40px #000}
+.strip.rev{left:auto;right:100vw;animation-name:striprev}
+.strip:before,.strip:after{content:"";position:absolute;left:0;right:0;height:5vh;background:repeating-linear-gradient(90deg,transparent 0 2vh,#e8d6b0 2vh 4.2vh,transparent 4.2vh 6vh);background-size:6vh 2.2vh;background-repeat:repeat-x;background-position:0 50%}
+.strip:before{top:4%}.strip:after{bottom:4%}
+.strip i{flex:0 0 44vw;height:70%;border:2px solid rgba(232,214,176,.4);background:rgba(232,214,176,.08)}
+@keyframes strip{from{transform:translateX(0)}to{transform:translateX(-250vw)}}
+@keyframes striprev{from{transform:translateX(0)}to{transform:translateX(250vw)}}
+.dark{position:absolute;inset:0;background:#000;opacity:0;animation:dk .16s forwards}
+@keyframes dk{to{opacity:1}}
+.dark.out{animation:flick .7s forwards}
+@keyframes flick{0%{opacity:1}25%{opacity:.25}35%{opacity:.7}50%{opacity:.1}65%{opacity:.35}100%{opacity:0}}
+.drop{animation:drop .55s cubic-bezier(.3,1.6,.5,1)}
+@keyframes drop{from{transform:translateY(-6vh)}to{transform:none}}
+.safe{position:absolute;inset:0;background:rgba(150,10,0,.55);opacity:0;animation:dk .26s forwards}
+.safe.out{animation:safeout 2s forwards}
+@keyframes safeout{0%{opacity:1}100%{opacity:0}}
+.dev figure{position:relative}
+.dev figure:after{content:"";position:absolute;inset:var(--pad,0);background:#fff;animation:devp 1.9s ease-in forwards;pointer-events:none}
+@keyframes devp{0%{opacity:1}100%{opacity:0}}
+.shrink{animation:shr .33s ease-in forwards}
+@keyframes shr{to{transform:scale(.15) rotate(-6deg);opacity:0}}
+.grow{animation:grw .65s cubic-bezier(.2,1.3,.4,1)}
+@keyframes grw{from{transform:scale(.15) rotate(8deg);opacity:0}to{transform:none;opacity:1}}
+.fade{animation:fd .2s forwards}@keyframes fd{to{opacity:0}}
+.spin{animation:spn 1s cubic-bezier(.2,.8,.3,1)}
+@keyframes spn{from{transform:rotate(-900deg) scale(.04)}to{transform:none}}
+.gull{position:fixed;z-index:6;left:-20vw;width:16vmin;color:#fff;pointer-events:none;animation:gull 4s linear forwards}
+.gull svg{width:100%;fill:#f7f7f2;stroke:#555;stroke-width:2;animation:flap .45s ease-in-out infinite alternate}
+@keyframes gull{to{transform:translate(140vw,-12vh)}}
+@keyframes flap{from{transform:scaleY(1)}to{transform:scaleY(.45)}}
+@media (prefers-reduced-motion:reduce){#bg svg.gd{animation:none}}
+@media (max-width:700px){#bar .lbl{display:none}}
+.slide{justify-content:flex-start;overflow-y:auto;overflow-x:hidden}
+.slide>:first-child{margin-top:auto}.slide>:last-child{margin-bottom:auto}
+
+/* ===== SLAJDY: seans przezroczy ===== */
+body.slajdy{--bg:radial-gradient(ellipse at 50% 35%,#2d3c55 0,#141c2a 60%,#0a0e15 100%);--ink:#f2e8d2;--gc:#e9dcc0;--go:.16;--g1:rgba(233,220,192,.22);--g2:rgba(233,220,192,.07);--acc:#e8b84a;--accink:#1b1408;--barbg:rgba(8,10,16,.85);--line:rgba(242,232,210,.25);--tocbg:#1d2636;--barh:56px;--R:290px;font-family:'Courier Prime',monospace}
+.slajdy #deco:before,.slajdy #deco:after{content:"";position:absolute;left:0;right:0;height:26px;background:#1a120a;background-image:repeating-linear-gradient(90deg,transparent 0 10px,#d9c39a 10px 20px,transparent 20px 30px);background-size:30px 10px;background-repeat:repeat-x;background-position:0 8px;opacity:.55;animation:roll 40s linear infinite}
+.slajdy #deco:before{top:0}.slajdy #deco:after{bottom:var(--barh)}
+@keyframes roll{to{background-position:-600px 8px}}
+.slajdy .beam{position:absolute;left:50%;top:0;width:140vw;height:100vh;transform:translateX(-50%);background:conic-gradient(from 160deg at 50% -10%,transparent 0deg,rgba(255,244,210,.06) 12deg,rgba(255,244,210,.11) 20deg,rgba(255,244,210,.06) 28deg,transparent 40deg);pointer-events:none}
+.slajdy .mount{background:linear-gradient(145deg,#fbf8f1,#e7e1d3);padding:clamp(8px,1.6vh,20px) clamp(8px,1.6vh,20px) clamp(26px,4.2vh,48px);border-radius:10px;box-shadow:0 14px 40px rgba(0,0,0,.6),inset 0 0 0 1px rgba(0,0,0,.08);position:relative;--pad:clamp(8px,1.6vh,20px) clamp(8px,1.6vh,20px) clamp(26px,4.2vh,48px)}
+.slajdy .mount img{border-radius:2px}
+.slajdy .mount .lbl{position:absolute;left:4%;bottom:.15em;font-family:Caveat,cursive;color:#1f3c8a;font-size:clamp(16px,2.8vh,32px);transform:rotate(-1.5deg)}
+.slajdy .mount .no{position:absolute;right:4%;bottom:.25em;font-family:Caveat,cursive;color:#a8261d;font-size:clamp(16px,2.8vh,32px)}
+.slajdy .cap{color:#f6edd8}
+.slajdy .dan{color:#e8b84a}
+.slajdy h1{font-family:'Abril Fatface',serif;font-weight:400;font-size:clamp(40px,10vh,120px);line-height:1;color:#fff4d6;text-shadow:0 4px 0 #8a5b16,0 10px 30px rgba(0,0,0,.6)}
+.slajdy h2{font-family:'Abril Fatface',serif;font-weight:400;font-size:clamp(30px,7vh,84px);color:#2b2418}
+.slajdy .sub{font-size:clamp(16px,2.6vh,30px);margin:1.4vh auto;max-width:44rem}
+.slajdy .kick{font-family:Caveat,cursive;font-size:clamp(22px,4vh,46px);color:#e8b84a}
+.slajdy .screen{background:linear-gradient(#f7f3ea,#e8e2d4);color:#2b2418;border-radius:6px;padding:4vh 5vw;box-shadow:0 20px 60px rgba(0,0,0,.6);max-width:min(92vw,900px)}
+.slajdy .screen h1{color:#2b2418;text-shadow:none}
+.slajdy .chslide{background:linear-gradient(145deg,#fbf8f1,#e7e1d3);border-radius:18px;padding:4vh 4vw;box-shadow:0 14px 40px rgba(0,0,0,.6);color:#2b2418;width:min(84vw,62vh);aspect-ratio:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center;outline:clamp(10px,3vh,34px) solid #f2ede1;outline-offset:-1px;position:relative}
+.slajdy .chslide .rn{font-family:Caveat,cursive;font-size:clamp(26px,5vh,60px);color:#1f3c8a}
+.slajdy .chslide p{font-size:clamp(16px,2.6vh,28px);margin-top:1vh}
+.slajdy .gbig{width:min(48vw,34vh);color:#f2e8d2;fill:none;stroke:currentColor;stroke-width:2.4;margin-bottom:1vh;--g1:rgba(232,184,74,.35);--g2:rgba(242,232,210,.12)}
+/* ===== CIEMNIA ===== */
+body.ciemnia{--bg:radial-gradient(circle at 85% 8%,rgba(210,40,20,.45) 0,rgba(120,10,5,.18) 30%,transparent 55%),radial-gradient(ellipse at 50% 60%,#2a0d0a 0,#120505 60%,#070202 100%);--ink:#f7dccf;--gc:#ff8a6a;--go:.15;--g1:rgba(255,138,106,.2);--g2:rgba(255,138,106,.06);--acc:#d8321e;--accink:#fff3ea;--barbg:rgba(10,2,2,.88);--line:rgba(247,220,207,.22);--tocbg:#2a0f0c;--barh:56px;--R:240px;font-family:'Special Elite',monospace}
+.ciemnia .lamp{position:absolute;right:3vw;top:0;width:min(10vw,90px);color:#ff8a6a;fill:none;stroke:currentColor;stroke-width:2.2;filter:drop-shadow(0 0 30px rgba(255,60,30,.8));animation:glow 4s ease-in-out infinite alternate}
+@keyframes glow{from{opacity:.75}to{opacity:1}}
+.ciemnia .rope{position:relative;width:min(96vw,calc((100dvh - var(--R))*4/3 + 120px));height:2px;background:#b88a64;margin-bottom:-2px;box-shadow:0 1px 2px #000}
+.ciemnia .print{background:#fbf7ef;padding:clamp(8px,1.5vh,18px);box-shadow:0 18px 40px rgba(0,0,0,.7);transform:rotate(var(--rot,0deg));transform-origin:50% 0;position:relative;--pad:clamp(8px,1.5vh,18px);animation:sway 6s ease-in-out infinite alternate}
+@keyframes sway{from{transform:rotate(var(--rot,0deg))}to{transform:rotate(calc(var(--rot,0deg) * -1))}}
+.ciemnia .pin{position:absolute;top:-2.2vh;width:clamp(10px,1.4vh,18px);height:clamp(30px,4.6vh,54px);background:linear-gradient(90deg,#c99a63,#e7c08b 50%,#b98650);border-radius:3px;box-shadow:0 3px 6px rgba(0,0,0,.6);z-index:2}
+.ciemnia .pin:after{content:"";position:absolute;left:-2px;right:-2px;top:40%;height:5px;background:#8d8d8d;border-radius:2px}
+.ciemnia .pin.l{left:12%}.ciemnia .pin.r{right:12%}
+.ciemnia .cap{color:#f7dccf;background:rgba(0,0,0,.25);padding:.3em .8em;border-radius:6px}
+.ciemnia .dan{color:#ffb38a}
+.ciemnia .chap{font-family:'Playfair Display',serif;font-style:italic;text-transform:none;letter-spacing:.04em;font-size:clamp(15px,2.2vh,24px)}
+.ciemnia h1{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(44px,11vh,130px);line-height:1;color:#ffe9de;text-shadow:0 0 30px rgba(255,60,30,.7)}
+.ciemnia h2{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(30px,7vh,84px);color:#2a1210;line-height:1.05}
+.ciemnia .sub{font-size:clamp(16px,2.6vh,30px);margin:1.4vh auto;max-width:44rem}
+.ciemnia .kick{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(18px,3vh,34px);color:#ffb38a}
+.ciemnia .chprint{background:#fbf7ef;color:#2a1210;padding:6vh 6vw;box-shadow:0 18px 40px rgba(0,0,0,.7);max-width:min(88vw,900px);transform:rotate(-1deg)}
+.ciemnia .chprint .rn{font-size:clamp(16px,2.4vh,26px);letter-spacing:.2em;text-transform:uppercase;color:#a8261d}
+.ciemnia .chprint p{font-size:clamp(16px,2.6vh,28px);margin-top:1vh}
+.ciemnia .gbig{width:min(52vw,40vh);color:#ffb38a;fill:none;stroke:currentColor;stroke-width:2.2;--g1:rgba(255,138,106,.28);--g2:rgba(255,138,106,.1);margin-bottom:1vh}
+/* ===== GAZETA ===== */
+body.gazeta{--bg:radial-gradient(rgba(60,45,30,.10) 1px,transparent 1.4px) 0 0/7px 7px,linear-gradient(#f1e8d0,#e6dbbd);--ink:#1f1a14;--gc:#2a2520;--go:.10;--g1:rgba(42,37,32,.12);--g2:rgba(42,37,32,.05);--acc:#a8261d;--accink:#fff;--barbg:rgba(31,26,20,.92);--line:rgba(31,26,20,.18);--tocbg:#f1e8d0;--barh:56px;--R:300px;font-family:'Old Standard TT',serif}
+.gazeta #bar{color:#f1e8d0}.gazeta #bar button{color:#f1e8d0;border-color:rgba(241,232,208,.3)}
+.gazeta .mast{width:min(96vw,calc((100dvh - var(--R))*4/3 + 160px));border-top:3px double #1f1a14;border-bottom:1px solid #1f1a14;padding:.3vh 0;margin-bottom:1vh;display:flex;justify-content:space-between;align-items:baseline;gap:1em}
+.gazeta .mast b{font-family:'Old Standard TT',serif;font-weight:700;font-size:clamp(16px,2.6vh,30px)}
+.gazeta .mast small{font-size:clamp(11px,1.5vh,16px);font-style:italic}
+.gazeta .head{font-family:Oswald,sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(20px,4.4vh,52px);line-height:1.05;margin-bottom:1vh;max-width:min(96vw,1100px)}
+.gazeta .np{border:1px solid #1f1a14;padding:4px;background:#fffaf0;box-shadow:3px 3px 0 rgba(31,26,20,.25);--pad:4px}
+.gazeta .cap{font-style:italic;text-align:left;max-width:min(92vw,calc((100dvh - var(--R))*4/3))}
+.gazeta .cap b{font-style:normal;font-family:Oswald,sans-serif;font-weight:500;text-transform:uppercase;font-size:.8em;letter-spacing:.06em;margin-right:.4em}
+.gazeta .dan{background:#a8261d;color:#fff;padding:.05em .4em;border-radius:3px;font-family:Oswald,sans-serif;font-style:normal;font-size:.75em;margin-left:.4em;vertical-align:middle}
+.gazeta .front{width:min(96vw,1200px);text-align:left}
+.gazeta .front .bigmast{font-family:'Old Standard TT',serif;font-weight:700;font-size:clamp(26px,min(8.5vh,9vw),104px);text-align:center;line-height:1;border-bottom:4px double #1f1a14;padding-bottom:.6vh}
+.gazeta .front .dl{display:flex;justify-content:space-between;border-bottom:1px solid #1f1a14;font-size:clamp(11px,1.7vh,18px);padding:.4vh 0;font-style:italic;gap:1em}
+.gazeta .front h1{font-family:Oswald,sans-serif;text-transform:uppercase;font-size:clamp(24px,min(7vh,8vw),86px);line-height:1;margin:1.4vh 0 .6vh;text-align:center}
+.gazeta .front .cols{display:grid;grid-template-columns:auto 1fr;gap:2vw;align-items:start}
+.gazeta .front .cols img{width:min(58vw,calc((100dvh - 330px)*4/3));height:auto;border:1px solid #1f1a14}
+.gazeta .front p{font-size:clamp(14px,2.1vh,22px);line-height:1.35;text-align:justify;hyphens:auto}
+.gazeta .front p.lead:first-letter{font-size:2.6em;float:left;line-height:.9;margin:.05em .08em 0 0;font-weight:700}
+.gazeta .front .gs{display:flex;gap:1vw;justify-content:center;margin-top:1vh}
+.gazeta .front .gs svg{width:min(14vw,11vh);color:#1f1a14;fill:none;stroke:currentColor;stroke-width:2;--g1:rgba(31,26,20,.15);--g2:rgba(31,26,20,.06)}
+.gazeta .chbox{border:3px double #1f1a14;padding:5vh 5vw;background:#f7f0dc;max-width:min(88vw,1000px)}
+.gazeta .chbox .rn{font-family:Oswald,sans-serif;letter-spacing:.3em;text-transform:uppercase;color:#a8261d;font-size:clamp(14px,2.2vh,24px)}
+.gazeta h2{font-family:Oswald,sans-serif;text-transform:uppercase;font-size:clamp(30px,7.5vh,90px);line-height:1}
+.gazeta .chbox p{font-style:italic;font-size:clamp(16px,2.6vh,28px);margin-top:1vh}
+.gazeta .sub{font-size:clamp(15px,2.4vh,26px)}
+@media (max-width:760px){.gazeta .front .cols{grid-template-columns:1fr}.gazeta .front .cols img{width:100%}.gazeta .front p{font-size:14px}.gazeta .mast small{display:none}}
+/* koniec */
+.endbox{max-width:min(92vw,900px)}
+.endbox .cred{margin:1.5vh 0;font-size:clamp(15px,2.3vh,26px);line-height:1.5}
+.endbox .more{margin-top:1.5vh;font-size:clamp(14px,2vh,22px)}
+.slajdy .endbox,.ciemnia .endbox{background:rgba(0,0,0,.35);padding:4vh 4vw;border-radius:14px}
+@media (max-width:700px) and (orientation:portrait){body.slajdy{--R:330px}body.ciemnia{--R:330px}body.gazeta{--R:380px}}
+
+.slajdy #stage{inset:26px 0 calc(var(--barh) + 26px) 0}
+.ciemnia .chwrap{display:flex;flex-direction:column;align-items:center}
+.ciemnia .chprint{position:relative}
+@media (max-width:700px){#bar{gap:.15rem;padding:0 .2rem}#bar button{padding:.3em .55em}#bar #bPrev,#bar #bNext{padding:.1em .55em}#cnt{min-width:3.6em;font-size:.9em}}
+
+.endbox h2{color:var(--ink)}
+.gazeta .gbig{color:#1f1a14;fill:none;stroke:currentColor;stroke-width:2;--g1:rgba(31,26,20,.15);--g2:rgba(31,26,20,.06)}
+.endbox .gbig{width:min(34vw,17vh);margin-bottom:.5vh}
+.gazeta .endbox{border:3px double #1f1a14;padding:3vh 4vw;background:#f7f0dc}
+</style></head>
+<body class="slajdy">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="g-miech" viewBox="0 0 220 150">
+<rect x="8" y="22" width="62" height="104" rx="7" fill="var(--g2)"/>
+<rect x="18" y="10" width="30" height="14" rx="3" fill="var(--g2)"/>
+<circle cx="33" cy="17" r="4"/>
+<path d="M70 28 L150 46 L150 102 L70 120 Z" fill="var(--g1)"/>
+<path d="M80 30 l0 88 M90 33 l0 82 M100 35 l0 78 M110 37 l0 74 M120 39 l0 70 M130 42 l0 64 M140 44 l0 60"/>
+<path d="M70 28 l5 6 l5 -4 l5 6 l5 -4 l5 6 l5 -4 l5 6 l5 -4 l5 6 l5 -4 l5 6 l5 -4 l5 6 l5 -4 l5 6"/>
+<rect x="150" y="40" width="14" height="68" rx="2" fill="var(--g2)"/>
+<circle cx="184" cy="74" r="22" fill="var(--g2)"/><circle cx="184" cy="74" r="14"/><circle cx="184" cy="74" r="6" fill="var(--g1)"/>
+<path d="M4 136 L216 136 M30 126 L30 136 M190 96 L190 136"/></symbol><symbol id="g-kaseta" viewBox="0 0 170 110">
+<rect x="10" y="22" width="56" height="74" rx="9" fill="var(--g2)"/>
+<rect x="26" y="8" width="24" height="16" rx="3" fill="var(--g1)"/><rect x="30" y="96" width="16" height="8" rx="2"/>
+<path d="M66 34 L160 34 L160 84 L66 84" fill="var(--g1)"/>
+<path d="M74 38 h6 M90 38 h6 M106 38 h6 M122 38 h6 M138 38 h6 M74 80 h6 M90 80 h6 M106 80 h6 M122 80 h6 M138 80 h6"/>
+<rect x="76" y="46" width="34" height="26"/><rect x="118" y="46" width="34" height="26"/>
+<path d="M20 40 l36 0 M20 50 l36 0" opacity=".5"/></symbol><symbol id="g-negatyw" viewBox="0 0 320 86">
+<rect x="2" y="2" width="316" height="82" rx="3" fill="var(--g2)"/>
+<path d="M12 9 h8 M32 9 h8 M52 9 h8 M72 9 h8 M92 9 h8 M112 9 h8 M132 9 h8 M152 9 h8 M172 9 h8 M192 9 h8 M212 9 h8 M232 9 h8 M252 9 h8 M272 9 h8 M292 9 h8" stroke-width="5"/>
+<path d="M12 77 h8 M32 77 h8 M52 77 h8 M72 77 h8 M92 77 h8 M112 77 h8 M132 77 h8 M152 77 h8 M172 77 h8 M192 77 h8 M212 77 h8 M232 77 h8 M252 77 h8 M272 77 h8 M292 77 h8" stroke-width="5"/>
+<rect x="12" y="18" width="88" height="50" fill="var(--g1)"/><rect x="116" y="18" width="88" height="50" fill="var(--g1)"/><rect x="220" y="18" width="88" height="50" fill="var(--g1)"/>
+<path d="M20 60 q20 -30 40 -6 t36 -10 M124 62 l20 -26 l14 14 l10 -8 l28 20 M236 30 a10 10 0 1 0 0.1 0 M226 64 q40 -24 76 0"/></symbol><symbol id="g-zarowka" viewBox="0 0 90 150">
+<path d="M45 6 C14 6 6 34 10 56 C14 76 28 84 30 96 L60 96 C62 84 76 76 80 56 C84 34 76 6 45 6 Z" fill="var(--g1)"/>
+<path d="M34 96 L34 70 L40 50 L45 62 L50 50 L56 70 L56 96"/>
+<path d="M30 96 h30 v10 h-30 z M30 106 h30 M32 112 h26 M32 118 h26 M35 124 h20" fill="var(--g2)"/>
+<path d="M45 128 v10 M24 26 q4 -10 14 -12" /></symbol><symbol id="g-lampa" viewBox="0 0 160 190">
+<path d="M20 30 Q80 -14 140 30 L104 92 L56 92 Z" fill="var(--g1)"/>
+<path d="M36 34 Q80 6 124 34" opacity=".6"/>
+<ellipse cx="80" cy="66" rx="14" ry="18" fill="var(--g2)"/>
+<rect x="68" y="92" width="24" height="18" fill="var(--g2)"/>
+<rect x="70" y="110" width="20" height="70" rx="6" fill="var(--g2)"/>
+<path d="M72 126 h16 M72 136 h16 M72 146 h16"/></symbol><symbol id="g-swiatlomierz" viewBox="0 0 120 170">
+<rect x="10" y="10" width="100" height="150" rx="18" fill="var(--g2)"/>
+<circle cx="60" cy="38" r="18" fill="var(--g1)"/><path d="M48 32 h24 M46 40 h28 M50 48 h20" opacity=".6"/>
+<path d="M24 100 A40 40 0 0 1 96 100" fill="var(--g1)"/>
+<path d="M30 92 l5 4 M40 84 l3 5 M52 80 l1 5 M68 80 l-1 5 M80 84 l-3 5 M90 92 l-5 4"/>
+<path d="M60 100 L78 76" stroke-width="3"/>
+<circle cx="60" cy="130" r="16"/><path d="M60 114 v8 M44 130 h8 M68 130 h8"/></symbol><symbol id="g-ramka" viewBox="0 0 100 100">
+<rect x="4" y="4" width="92" height="92" rx="8" fill="var(--g1)"/>
+<rect x="22" y="28" width="56" height="40" rx="3" fill="var(--g2)"/>
+<path d="M12 82 h40 M12 16 h22" opacity=".7"/></symbol><symbol id="g-rzutnik" viewBox="0 0 240 160">
+<rect x="20" y="60" width="150" height="76" rx="10" fill="var(--g2)"/>
+<path d="M25 50 v8 a70 16 0 0 0 140 0 v-8" fill="var(--g2)"/>
+<ellipse cx="95" cy="50" rx="70" ry="16" fill="var(--g1)"/>
+<path d="M119.0 50.0L161.0 50.0M118.2 51.6L158.8 53.6M115.8 53.0L152.2 57.0M112.0 54.2L141.7 59.9M107.0 55.2L128.0 62.1M101.2 55.8L112.1 63.5M95.0 56.0L95.0 64.0M88.8 55.8L77.9 63.5M83.0 55.2L62.0 62.1M78.0 54.2L48.3 59.9M74.2 53.0L37.8 57.0M71.8 51.6L31.2 53.6M71.0 50.0L29.0 50.0M71.8 48.4L31.2 46.4M74.2 47.0L37.8 43.0M78.0 45.8L48.3 40.1M83.0 44.8L62.0 37.9M88.8 44.2L77.9 36.5M95.0 44.0L95.0 36.0M101.2 44.2L112.1 36.5M107.0 44.8L128.0 37.9M112.0 45.8L141.7 40.1M115.8 47.0L152.2 43.0M118.2 48.4L158.8 46.4" opacity=".55" stroke-width="1.2"/>
+<ellipse cx="95" cy="50" rx="22" ry="5" fill="var(--g2)"/>
+<rect x="170" y="80" width="40" height="34" rx="4" fill="var(--g1)"/>
+<rect x="210" y="76" width="22" height="42" rx="5" fill="var(--g2)"/>
+<path d="M36 80 h40 M36 92 h40 M36 104 h40" opacity=".6"/>
+<path d="M36 136 v14 M150 136 v14"/></symbol><symbol id="g-polaroid" viewBox="0 0 100 122">
+<rect x="4" y="4" width="92" height="114" rx="3" fill="var(--g1)"/>
+<rect x="12" y="12" width="76" height="76" fill="var(--g2)"/>
+<path d="M18 80 q16 -26 30 -8 t34 -10" opacity=".7"/><circle cx="70" cy="30" r="7" opacity=".7"/>
+<path d="M18 102 q10 -4 20 0 t20 0" opacity=".6"/></symbol><symbol id="g-kuweta" viewBox="0 0 220 100">
+<path d="M30 20 L190 20 L214 84 L6 84 Z" fill="var(--g2)"/>
+<path d="M44 30 L176 30 L194 74 L26 74 Z" fill="var(--g1)" opacity=".85"/>
+<path d="M70 38 L150 38 L160 66 L60 66 Z" fill="var(--g2)" opacity=".5"/>
+<path d="M30 52 q20 -6 40 0 t40 0 t40 0 t40 0" opacity=".5"/>
+<path d="M140 6 L170 50 M150 4 L178 44"/></symbol><symbol id="g-czerwona" viewBox="0 0 110 130">
+<path d="M55 2 v18"/>
+<rect x="15" y="20" width="80" height="80" rx="10" fill="var(--g2)"/>
+<circle cx="55" cy="60" r="28" fill="#c0201a" stroke="#ff6a4d"/>
+<circle cx="55" cy="60" r="16" fill="#ff4a2a" opacity=".55"/>
+<path d="M30 110 h50 M40 120 h30"/></symbol><symbol id="g-powiekszalnik" viewBox="0 0 150 210">
+<rect x="6" y="180" width="138" height="22" rx="3" fill="var(--g2)"/>
+<rect x="22" y="188" width="60" height="10" fill="var(--g1)"/>
+<rect x="110" y="20" width="12" height="162" fill="var(--g2)"/>
+<rect x="34" y="24" width="80" height="48" rx="6" fill="var(--g1)"/>
+<path d="M52 72 L96 72 L88 98 L60 98 Z" fill="var(--g2)"/>
+<path d="M60 98 L68 116 L80 116 L88 98" fill="var(--g2)"/>
+<path d="M68 116 L30 186 M80 116 L118 186" opacity=".35" stroke-dasharray="4 5"/>
+<path d="M114 60 h-6 M114 90 h-6"/></symbol><symbol id="g-prasowy" viewBox="0 0 260 190">
+<rect x="20" y="64" width="92" height="96" rx="6" fill="var(--g2)"/>
+<path d="M112 72 L170 84 L170 140 L112 152 Z" fill="var(--g1)"/>
+<path d="M122 74 v76 M132 76 v72 M142 78 v68 M152 80 v64 M162 82 v60"/>
+<rect x="170" y="78" width="14" height="68" fill="var(--g2)"/>
+<circle cx="200" cy="112" r="20" fill="var(--g2)"/><circle cx="200" cy="112" r="11"/>
+<rect x="34" y="50" width="56" height="14" rx="3" fill="var(--g1)"/>
+<rect x="4" y="74" width="16" height="64" rx="6" fill="var(--g2)"/>
+<path d="M12 74 L12 50"/>
+<path d="M-26 6 Q12 -20 50 6 L28 44 L-4 44 Z" fill="var(--g1)" transform="translate(4 6)"/>
+<ellipse cx="28" cy="30" rx="8" ry="10" fill="var(--g2)"/>
+<path d="M20 170 L240 170"/></symbol><symbol id="g-dwuobiektywowy" viewBox="0 0 110 150">
+<rect x="10" y="26" width="90" height="118" rx="6" fill="var(--g2)"/>
+<path d="M14 26 L30 4 L80 4 L96 26" fill="var(--g1)"/>
+<circle cx="55" cy="58" r="20" fill="var(--g1)"/><circle cx="55" cy="58" r="10"/>
+<circle cx="55" cy="108" r="22" fill="var(--g1)"/><circle cx="55" cy="108" r="11"/>
+<circle cx="90" cy="84" r="5"/></symbol><symbol id="g-szpula" viewBox="0 0 130 130">
+<circle cx="65" cy="65" r="58" fill="var(--g2)"/>
+<circle cx="65" cy="65" r="44" fill="var(--g1)" opacity=".6"/>
+<circle cx="65" cy="65" r="9" fill="var(--g2)"/>
+<circle cx="65" cy="34" r="10" fill="var(--g2)"/><circle cx="94" cy="56" r="10" fill="var(--g2)"/>
+<circle cx="83" cy="90" r="10" fill="var(--g2)"/><circle cx="47" cy="90" r="10" fill="var(--g2)"/><circle cx="36" cy="56" r="10" fill="var(--g2)"/>
+<path d="M120 70 L130 126"/></symbol><symbol id="g-mewa" viewBox="0 0 120 50">
+<path d="M4 30 Q30 2 60 28 Q90 2 116 30 Q90 16 60 34 Q30 16 4 30 Z" fill="var(--g1)" stroke-width="2"/></symbol></defs></svg>
+<div id="bg"><svg class="gd" viewBox="0 0 240 160" style="left:2%;top:6%;width:26vmin;--r:-6deg;transform:rotate(-6deg);animation-delay:-0.0s" aria-hidden="true"><use href="#g-rzutnik"/></svg><svg class="gd" viewBox="0 0 320 86" style="left:70%;top:4%;width:34vmin;--r:8deg;transform:rotate(8deg);animation-delay:-1.7s" aria-hidden="true"><use href="#g-negatyw"/></svg><svg class="gd" viewBox="0 0 100 100" style="left:88%;top:30%;width:13vmin;--r:12deg;transform:rotate(12deg);animation-delay:-3.4s" aria-hidden="true"><use href="#g-ramka"/></svg><svg class="gd" viewBox="0 0 100 100" style="left:4%;top:40%;width:12vmin;--r:-14deg;transform:rotate(-14deg);animation-delay:-5.1s" aria-hidden="true"><use href="#g-ramka"/></svg><svg class="gd" viewBox="0 0 170 110" style="left:80%;top:62%;width:20vmin;--r:-8deg;transform:rotate(-8deg);animation-delay:-6.8s" aria-hidden="true"><use href="#g-kaseta"/></svg><svg class="gd" viewBox="0 0 130 130" style="left:2%;top:68%;width:18vmin;--r:10deg;transform:rotate(10deg);animation-delay:-8.5s" aria-hidden="true"><use href="#g-szpula"/></svg><svg class="gd" viewBox="0 0 120 170" style="left:90%;top:74%;width:10vmin;--r:6deg;transform:rotate(6deg);animation-delay:-10.2s" aria-hidden="true"><use href="#g-swiatlomierz"/></svg><svg class="gd" viewBox="0 0 100 100" style="left:40%;top:82%;width:10vmin;--r:4deg;transform:rotate(4deg);animation-delay:-11.9s" aria-hidden="true"><use href="#g-ramka"/></svg><svg class="gd" viewBox="0 0 320 86" style="left:30%;top:0%;width:26vmin;--r:-3deg;transform:rotate(-3deg);animation-delay:-13.6s" aria-hidden="true"><use href="#g-negatyw"/></svg><svg class="gd" viewBox="0 0 100 122" style="left:60%;top:80%;width:11vmin;--r:-9deg;transform:rotate(-9deg);animation-delay:-15.3s" aria-hidden="true"><use href="#g-polaroid"/></svg></div><div id="deco"><div class="beam"></div></div>
+<main id="stage" aria-live="polite"></main>
+<div id="fx"></div>
+<nav id="bar" aria-label="Sterowanie">
+<button id="bPrev" title="Wstecz (strzałka w lewo)" aria-label="Wstecz">◀</button>
+<button id="bToc" title="Spis (S)">☰<span class="lbl"> Spis</span></button>
+<span id="cnt"></span>
+<button id="bSnd" title="Dźwięk (M)" aria-pressed="false">🔇<span class="lbl"> Dźwięk</span></button>
+<button id="bAuto" title="Pokaz sam (P)" aria-pressed="false">▶<span class="lbl"> Pokaz sam</span></button>
+<button id="bFs" title="Pełny ekran (F)">⛶<span class="lbl"> Ekran</span></button>
+<button id="bNext" title="Dalej (strzałka w prawo)" aria-label="Dalej">▶</button>
+</nav>
+<div id="toc" hidden><div class="in"><h3>Spis treści</h3><ul><li data-j="1">Rozdział 1: Pod mostem <small>(5 zdjęć)</small></li><li data-j="7">Rozdział 2: Witamy na nabrzeżu <small>(14 zdjęć)</small></li><li data-j="22">Rozdział 3: Most, który pływa <small>(13 zdjęć)</small></li><li data-j="36">Rozdział 4: Motorówki i Łasztownia <small>(12 zdjęć)</small></li><li data-j="49">Zakończenie</li></ul></div></div>
+<noscript><p style="position:fixed;top:40%;width:100%;text-align:center">Ten pokaz potrzebuje włączonego JavaScriptu.</p></noscript>
+<script>window.SLIDES=["<svg class=\"gbig\" viewBox=\"0 0 240 160\"  aria-hidden=\"true\"><use href=\"#g-rzutnik\"/></svg><div class=\"screen\"><div class=\"kick\">Seans przezroczy u Stacha</div><h1>Odra w kadrze</h1><p class=\"sub\">Dni Morza 2009, czyli rzeka, motorówki i most, który pływa</p><p class=\"sub\"><b>Szczecin, 14 czerwca 2009</b></p></div>\n<button class=\"btn\" data-go=\"next\">▶ Włącz projektor</button><p class=\"hint\">Dalej: strzałka, kliknięcie albo przesunięcie palcem. Na telewizorze: „Pokaz sam”.</p>", "<div class=\"chslide\"><div class=\"rn\">Rozdział 1</div><h2>Pod mostem</h2><p>14:56, start z cienia</p><p class=\"hint\">5 zdjęć</p></div>", "<div class=\"chap\">Rozdział 1: Pod mostem</div><figure class=\"mount\"><img src=\"img/175.jpg\" alt=\"Pierwszy kadr dnia: żaglówka, diabelski młyn i kawałek mostu w roli ramki. Kompozycja jak z podręcznika, choć podręcznik o tym nie wie.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 1</span></figure><p class=\"cap\">Pierwszy kadr dnia: żaglówka, diabelski młyn i kawałek mostu w roli ramki. Kompozycja jak z podręcznika, choć podręcznik o tym nie wie.</p>", "<div class=\"chap\">Rozdział 1: Pod mostem</div><figure class=\"mount\"><img src=\"img/176.jpg\" alt=\"Żaglówka pozuje drugi raz. Widać, że zawodowiec.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 2</span></figure><p class=\"cap\">Żaglówka pozuje drugi raz. Widać, że zawodowiec.</p>", "<div class=\"chap\">Rozdział 1: Pod mostem</div><figure class=\"mount\"><img src=\"img/179.jpg\" alt=\"Most nad głową, młyn na horyzoncie. Stach fotografuje z cienia, jak prawdziwy agent wywiadu morskiego.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 3</span></figure><p class=\"cap\">Most nad głową, młyn na horyzoncie. Stach fotografuje z cienia, jak prawdziwy agent wywiadu morskiego.</p>", "<div class=\"chap\">Rozdział 1: Pod mostem</div><figure class=\"mount\"><img src=\"img/181.jpg\" alt=\"Łasztownia w pełnej gali. Diabelski młyn kręci się powoli, żeby wszyscy zdążyli ustawić ostrość.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 4</span></figure><p class=\"cap\">Łasztownia w pełnej gali. Diabelski młyn kręci się powoli, żeby wszyscy zdążyli ustawić ostrość.</p>", "<div class=\"chap\">Rozdział 1: Pod mostem</div><figure class=\"mount\"><img src=\"img/183.jpg\" alt=\"Danusia pod światło. Kto zna Stacha, ten wie, że takie kadry to jego ulubiona zagadka do rozwiązania.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 5</span></figure><p class=\"cap\">Danusia pod światło. Kto zna Stacha, ten wie, że takie kadry to jego ulubiona zagadka do rozwiązania.</p>", "<div class=\"chslide\"><div class=\"rn\">Rozdział 2</div><h2>Witamy na nabrzeżu</h2><p>Łodzie, cumy i wycieraczka z klasą</p><p class=\"hint\">14 zdjęć</p></div>", "<div class=\"chap\">Rozdział 2: Witamy na nabrzeżu</div><figure class=\"mount\"><img src=\"img/186.jpg\" alt=\"Jachcik przycumowany, żółty pachołek na straży. Wszystko w porządku, można iść dalej.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 6</span></figure><p class=\"cap\">Jachcik przycumowany, żółty pachołek na straży. Wszystko w porządku, można iść dalej.</p>", "<div class=\"chap\">Rozdział 2: Witamy na nabrzeżu</div><figure class=\"mount\"><img src=\"img/187.jpg\" alt=\"Żagle zwinięte, maszty w gotowości. Ten jacht udaje, że odpoczywa, ale na pewno myśli o morzu.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 7</span></figure><p class=\"cap\">Żagle zwinięte, maszty w gotowości. Ten jacht udaje, że odpoczywa, ale na pewno myśli o morzu.</p>", "<div class=\"chap\">Rozdział 2: Witamy na nabrzeżu</div><figure class=\"mount\"><img src=\"img/189.jpg\" alt=\"Motorówka tak biała, że aż trzeba mrużyć oczy. Właściciel chyba poleruje ją szczoteczką do zębów.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 8</span></figure><p class=\"cap\">Motorówka tak biała, że aż trzeba mrużyć oczy. Właściciel chyba poleruje ją szczoteczką do zębów.</p>", "<div class=\"chap\">Rozdział 2: Witamy na nabrzeżu</div><figure class=\"mount\"><img src=\"img/190.jpg\" alt=\"Witamy! Najbardziej gościnna wycieraczka w Szczecinie. Butów nie trzeba zdejmować, to przecież pokład.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 9</span></figure><p class=\"cap\">Witamy! Najbardziej gościnna wycieraczka w Szczecinie. Butów nie trzeba zdejmować, to przecież pokład.</p>", "<div class=\"chap\">Rozdział 2: Witamy na nabrzeżu</div><figure class=\"mount\"><img src=\"img/194.jpg\" alt=\"Kapitan na pokładzie, załoga w komplecie, koło ratunkowe pod ręką. Pełen profesjonalizm pod mostem.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 10</span></figure><p class=\"cap\">Kapitan na pokładzie, załoga w komplecie, koło ratunkowe pod ręką. Pełen profesjonalizm pod mostem.</p>", "<div class=\"chap\">Rozdział 2: Witamy na nabrzeżu</div><figure class=\"mount\"><img src=\"img/195.jpg\" alt=\"Joanna z Nowego Warpna, zielono-biała piękność. W takich kolorach nie zginie nawet we mgle.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 11</span></figure><p class=\"cap\">Joanna z Nowego Warpna, zielono-biała piękność. W takich kolorach nie zginie nawet we mgle.</p>", "<div class=\"chap\">Rozdział 2: Witamy na nabrzeżu</div><figure class=\"mount\"><img src=\"img/197.jpg\" alt=\"Widok z pokładu Joanny: most, rzeka i chmury, które jeszcze nie zdecydowały, czy padać.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 12</span></figure><p class=\"cap\">Widok z pokładu Joanny: most, rzeka i chmury, które jeszcze nie zdecydowały, czy padać.</p>", "<div class=\"chap\">Rozdział 2: Witamy na nabrzeżu</div><figure class=\"mount\"><img src=\"img/205.jpg\" alt=\"Spacerowicze w natarciu. Nabrzeże pełne, a motorówka cierpliwie czeka na swoją kolej do zdjęcia.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 13</span></figure><p class=\"cap\">Spacerowicze w natarciu. Nabrzeże pełne, a motorówka cierpliwie czeka na swoją kolej do zdjęcia.</p>", "<div class=\"chap\">Rozdział 2: Witamy na nabrzeżu</div><figure class=\"mount\"><img src=\"img/207.jpg\" alt=\"Danusia rusza na łowy. Torba na ramieniu, aparat w gotowości, kurs na najlepsze kadry.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 14</span></figure><p class=\"cap\">Danusia rusza na łowy. Torba na ramieniu, aparat w gotowości, kurs na najlepsze kadry.</p>", "<div class=\"chap\">Rozdział 2: Witamy na nabrzeżu</div><figure class=\"mount\"><img src=\"img/209.jpg\" alt=\"Pokład zielony jak trawnik, tylko kosić nie trzeba. Liny zwinięte jak kłębki włóczki u babci.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 15</span></figure><p class=\"cap\">Pokład zielony jak trawnik, tylko kosić nie trzeba. Liny zwinięte jak kłębki włóczki u babci.</p>", "<div class=\"chap\">Rozdział 2: Witamy na nabrzeżu</div><figure class=\"mount\"><img src=\"img/211.jpg\" alt=\"Kolorowa barka przy kei. Każda łódka wystroiła się dziś jak na wesele.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 16</span></figure><p class=\"cap\">Kolorowa barka przy kei. Każda łódka wystroiła się dziś jak na wesele.</p>", "<div class=\"chap\">Rozdział 2: Witamy na nabrzeżu</div><figure class=\"mount\"><img src=\"img/212.jpg\" alt=\"Z dziobu widać więcej. Lina zwinięta w ślimaka, żeby nikt się nie potknął, a już zwłaszcza fotograf.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 17</span></figure><p class=\"cap\">Z dziobu widać więcej. Lina zwinięta w ślimaka, żeby nikt się nie potknął, a już zwłaszcza fotograf.</p>", "<div class=\"chap\">Rozdział 2: Witamy na nabrzeżu</div><figure class=\"mount\"><img src=\"img/213.jpg\" alt=\"Skuter wodny pędzi, aż piana leci. Ktoś tu się bardzo spieszy na obiad.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 18</span></figure><p class=\"cap\">Skuter wodny pędzi, aż piana leci. Ktoś tu się bardzo spieszy na obiad.</p>", "<div class=\"chap\">Rozdział 2: Witamy na nabrzeżu</div><figure class=\"mount\"><img src=\"img/216.jpg\" alt=\"Danusia idzie wzdłuż statku krokiem fotoreporterki. Aparat gotowy, bo każda chwila może trafić na pierwszą stronę.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 19</span></figure><p class=\"cap\">Danusia idzie wzdłuż statku krokiem fotoreporterki. Aparat gotowy, bo każda chwila może trafić na pierwszą stronę.</p>", "<div class=\"chslide\"><div class=\"rn\">Rozdział 3</div><h2>Most, który pływa</h2><p>Spacer po Odrze suchą stopą</p><p class=\"hint\">13 zdjęć</p></div>", "<div class=\"chap\">Rozdział 3: Most, który pływa</div><figure class=\"mount\"><img src=\"img/220.jpg\" alt=\"Pierwszy krok na pontony. Odra pod nogami, a wesołe miasteczko na drugim brzegu macha zachęcająco.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 20</span></figure><p class=\"cap\">Pierwszy krok na pontony. Odra pod nogami, a wesołe miasteczko na drugim brzegu macha zachęcająco.</p>", "<div class=\"chap\">Rozdział 3: Most, który pływa</div><figure class=\"mount\"><img src=\"img/222.jpg\" alt=\"Most pontonowy w pełnym ruchu. Pan na pierwszym planie idzie tak pewnie, jakby chodził tędy codziennie.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 21</span></figure><p class=\"cap\">Most pontonowy w pełnym ruchu. Pan na pierwszym planie idzie tak pewnie, jakby chodził tędy codziennie.</p>", "<div class=\"chap\">Rozdział 3: Most, który pływa</div><figure class=\"mount\"><img src=\"img/224.jpg\" alt=\"Wieża katedry pilnuje spacerowiczów z daleka. Most trzyma się dzielnie, choć troszkę się kołysze.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 22</span></figure><p class=\"cap\">Wieża katedry pilnuje spacerowiczów z daleka. Most trzyma się dzielnie, choć troszkę się kołysze.</p>", "<div class=\"chap\">Rozdział 3: Most, który pływa</div><figure class=\"mount\"><img src=\"img/226.jpg\" alt=\"Przez rzekę przeprawia się nawet wózek z dzieckiem. Najmłodszy marynarz Dni Morza.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 23</span></figure><p class=\"cap\">Przez rzekę przeprawia się nawet wózek z dzieckiem. Najmłodszy marynarz Dni Morza.</p>", "<div class=\"chap\">Rozdział 3: Most, który pływa</div><figure class=\"mount\"><img src=\"img/228.jpg\" alt=\"Koła ratunkowe co kilka kroków. Organizatorzy pomyśleli o wszystkim, nawet o tych, co lubią się wychylać.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 24</span></figure><p class=\"cap\">Koła ratunkowe co kilka kroków. Organizatorzy pomyśleli o wszystkim, nawet o tych, co lubią się wychylać.</p>", "<div class=\"chap\">Rozdział 3: Most, który pływa</div><figure class=\"mount\"><img src=\"img/231.jpg\" alt=\"Odra, mosty i panorama Starego Miasta. Pocztówka, którą wystarczy tylko podpisać.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 25</span></figure><p class=\"cap\">Odra, mosty i panorama Starego Miasta. Pocztówka, którą wystarczy tylko podpisać.</p>", "<div class=\"chap\">Rozdział 3: Most, który pływa</div><figure class=\"mount\"><img src=\"img/233.jpg\" alt=\"Koło ratunkowe na pierwszym planie, katedra w tle. Sztuka i bezpieczeństwo w jednym kadrze.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 26</span></figure><p class=\"cap\">Koło ratunkowe na pierwszym planie, katedra w tle. Sztuka i bezpieczeństwo w jednym kadrze.</p>", "<div class=\"chap\">Rozdział 3: Most, który pływa</div><figure class=\"mount\"><img src=\"img/236.jpg\" alt=\"Tłum przy barierce. Wszyscy patrzą w tę samą stronę, więc tam na pewno dzieje się coś ciekawego.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 27</span></figure><p class=\"cap\">Tłum przy barierce. Wszyscy patrzą w tę samą stronę, więc tam na pewno dzieje się coś ciekawego.</p>", "<div class=\"chap\">Rozdział 3: Most, który pływa</div><figure class=\"mount\"><img src=\"img/239.jpg\" alt=\"Most pełen ludzi, a jakoś nikt nie wpadł do wody. Szczecinianie mają morskie nogi.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 28</span></figure><p class=\"cap\">Most pełen ludzi, a jakoś nikt nie wpadł do wody. Szczecinianie mają morskie nogi.</p>", "<div class=\"chap\">Rozdział 3: Most, który pływa</div><figure class=\"mount\"><img src=\"img/305.jpg\" alt=\"Danusia na pontonach wśród tłumu. Tylko ona idzie z aparatem tak, jakby miała akredytację prasową.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 29</span></figure><p class=\"cap\">Danusia na pontonach wśród tłumu. Tylko ona idzie z aparatem tak, jakby miała akredytację prasową.</p>", "<div class=\"chap\">Rozdział 3: Most, który pływa</div><figure class=\"mount\"><img src=\"img/311.jpg\" alt=\"Pani w różowym sweterku przechodzi dziarsko. Most pontonowy to dziś najmodniejszy wybieg w mieście.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 30</span></figure><p class=\"cap\">Pani w różowym sweterku przechodzi dziarsko. Most pontonowy to dziś najmodniejszy wybieg w mieście.</p>", "<div class=\"chap\">Rozdział 3: Most, który pływa</div><figure class=\"mount\"><img src=\"img/315.jpg\" alt=\"Czerwone barierki, czerwone koła, czerwone chorągiewki. Ktoś tu bardzo lubi czerwony.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 31</span></figure><p class=\"cap\">Czerwone barierki, czerwone koła, czerwone chorągiewki. Ktoś tu bardzo lubi czerwony.</p>", "<div class=\"chap\">Rozdział 3: Most, który pływa</div><figure class=\"mount\"><img src=\"img/318.jpg\" alt=\"Stara łódź na zasłużonej emeryturze. Opony przy burcie to jej poduszki, żeby się nie obijać.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 32</span></figure><p class=\"cap\">Stara łódź na zasłużonej emeryturze. Opony przy burcie to jej poduszki, żeby się nie obijać.</p>", "<div class=\"chslide\"><div class=\"rn\">Rozdział 4</div><h2>Motorówki i Łasztownia</h2><p>Szybko, głośno i na wodzie</p><p class=\"hint\">12 zdjęć</p></div>", "<div class=\"chap\">Rozdział 4: Motorówki i Łasztownia</div><figure class=\"mount\"><img src=\"img/242.jpg\" alt=\"Biało-czerwona motorówka przemyka przed statkami. Patriotyzm w pełnym pędzie.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 33</span></figure><p class=\"cap\">Biało-czerwona motorówka przemyka przed statkami. Patriotyzm w pełnym pędzie.</p>", "<div class=\"chap\">Rozdział 4: Motorówki i Łasztownia</div><figure class=\"mount\"><img src=\"img/243.jpg\" alt=\"Ta sama strzała jeszcze raz. Stach złapał ją w kadr, zanim zdążyła odpłynąć za horyzont.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 34</span></figure><p class=\"cap\">Ta sama strzała jeszcze raz. Stach złapał ją w kadr, zanim zdążyła odpłynąć za horyzont.</p>", "<div class=\"chap\">Rozdział 4: Motorówki i Łasztownia</div><figure class=\"mount\"><img src=\"img/244.jpg\" alt=\"Mała motorówka przed wielkim statkiem. Odwaga nie zależy od rozmiaru.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 35</span></figure><p class=\"cap\">Mała motorówka przed wielkim statkiem. Odwaga nie zależy od rozmiaru.</p>", "<div class=\"chap\">Rozdział 4: Motorówki i Łasztownia</div><figure class=\"mount\"><img src=\"img/246.jpg\" alt=\"Łodzie pod plandekami drzemią przy kei. Dni Morza dniami, a sjesta musi być.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 36</span></figure><p class=\"cap\">Łodzie pod plandekami drzemią przy kei. Dni Morza dniami, a sjesta musi być.</p>", "<div class=\"chap\">Rozdział 4: Motorówki i Łasztownia</div><figure class=\"mount\"><img src=\"img/247.jpg\" alt=\"Most, motorówki i żółty skuter. Ruch na Odrze jak na skrzyżowaniu w godzinach szczytu.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 37</span></figure><p class=\"cap\">Most, motorówki i żółty skuter. Ruch na Odrze jak na skrzyżowaniu w godzinach szczytu.</p>", "<div class=\"chap\">Rozdział 4: Motorówki i Łasztownia</div><figure class=\"mount\"><img src=\"img/250.jpg\" alt=\"Żółta łódeczka i sternik w czerwonym. Najweselsze barwy na całej rzece.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 38</span></figure><p class=\"cap\">Żółta łódeczka i sternik w czerwonym. Najweselsze barwy na całej rzece.</p>", "<div class=\"chap\">Rozdział 4: Motorówki i Łasztownia</div><figure class=\"mount\"><img src=\"img/252.jpg\" alt=\"Motorówka sunie pod mostem, a w tle już wyglądają maszty żaglowców. Zwiastun następnego pokazu.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 39</span></figure><p class=\"cap\">Motorówka sunie pod mostem, a w tle już wyglądają maszty żaglowców. Zwiastun następnego pokazu.</p>", "<div class=\"chap\">Rozdział 4: Motorówki i Łasztownia</div><figure class=\"mount\"><img src=\"img/253.jpg\" alt=\"Danusia przy budce z łakociami. Reporterka też człowiek i czasem ma ochotę na coś słodkiego.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 40</span></figure><p class=\"cap\">Danusia przy budce z łakociami. Reporterka też człowiek i czasem ma ochotę na coś słodkiego.</p>", "<div class=\"chap\">Rozdział 4: Motorówki i Łasztownia</div><figure class=\"mount\"><img src=\"img/254.jpg\" alt=\"Stare tory na nabrzeżu. Pociąg już tu nie przyjedzie, za to spacerowicze walą drzwiami i oknami.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 41</span></figure><p class=\"cap\">Stare tory na nabrzeżu. Pociąg już tu nie przyjedzie, za to spacerowicze walą drzwiami i oknami.</p>", "<div class=\"chap\">Rozdział 4: Motorówki i Łasztownia</div><figure class=\"mount\"><img src=\"img/261.jpg\" alt=\"Diabelski młyn z bliska. Z góry widać pewnie całe Dni Morza, ale Stach woli twardy grunt i dobry kadr.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 42</span></figure><p class=\"cap\">Diabelski młyn z bliska. Z góry widać pewnie całe Dni Morza, ale Stach woli twardy grunt i dobry kadr.</p>", "<div class=\"chap\">Rozdział 4: Motorówki i Łasztownia</div><figure class=\"mount\"><img src=\"img/309.jpg\" alt=\"Kolorowe namioty na drugim brzegu. Z daleka wyglądają jak cukierki rozsypane nad wodą.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 43</span></figure><p class=\"cap\">Kolorowe namioty na drugim brzegu. Z daleka wyglądają jak cukierki rozsypane nad wodą.</p>", "<div class=\"chap\">Rozdział 4: Motorówki i Łasztownia</div><figure class=\"mount\"><img src=\"img/317.jpg\" alt=\"Czerwony statek odpoczywa pod mostem. Po całym dniu na wodzie należy mu się chwila spokoju.\" width=\"1024\" height=\"768\"><span class=\"lbl\">Dni Morza ’09</span><span class=\"no\">nr 44</span></figure><p class=\"cap\">Czerwony statek odpoczywa pod mostem. Po całym dniu na wodzie należy mu się chwila spokoju.</p>", "<div class=\"endbox\"><svg class=\"gbig\" viewBox=\"0 0 240 160\"  aria-hidden=\"true\"><use href=\"#g-rzutnik\"/></svg><h2>Koniec seansu</h2><p class=\"sub\">Projektor stygnie, a Odra płynie dalej. Dziękujemy za wspólny rejs suchą stopą!</p>\n<div class=\"cred\">Zdjęcia: Stach<br>Gościnnie z aparatem: Danusia<br>Projekcja i napisy: Zbychu</div>\n<button class=\"btn\" data-go=\"0\">↺ Jeszcze raz</button>\n<div class=\"more\">Pozostałe pokazy z Dni Morza 2009:<br><a class=\"btn\" href=\"https://gladiator2201.github.io/dnimorza2009-zaglowce/\">Las masztów</a><a class=\"btn\" href=\"https://gladiator2201.github.io/dnimorza2009-danusia/\">Danusia na tropie Dni Morza</a></div></div>"];window.META=[{"t": "title"}, {"t": "ch"}, {"t": "p", "img": "img/175.jpg"}, {"t": "p", "img": "img/176.jpg"}, {"t": "p", "img": "img/179.jpg"}, {"t": "p", "img": "img/181.jpg"}, {"t": "p", "img": "img/183.jpg"}, {"t": "ch"}, {"t": "p", "img": "img/186.jpg"}, {"t": "p", "img": "img/187.jpg"}, {"t": "p", "img": "img/189.jpg"}, {"t": "p", "img": "img/190.jpg"}, {"t": "p", "img": "img/194.jpg"}, {"t": "p", "img": "img/195.jpg"}, {"t": "p", "img": "img/197.jpg"}, {"t": "p", "img": "img/205.jpg"}, {"t": "p", "img": "img/207.jpg"}, {"t": "p", "img": "img/209.jpg"}, {"t": "p", "img": "img/211.jpg"}, {"t": "p", "img": "img/212.jpg"}, {"t": "p", "img": "img/213.jpg"}, {"t": "p", "img": "img/216.jpg"}, {"t": "ch"}, {"t": "p", "img": "img/220.jpg"}, {"t": "p", "img": "img/222.jpg"}, {"t": "p", "img": "img/224.jpg"}, {"t": "p", "img": "img/226.jpg"}, {"t": "p", "img": "img/228.jpg"}, {"t": "p", "img": "img/231.jpg"}, {"t": "p", "img": "img/233.jpg"}, {"t": "p", "img": "img/236.jpg"}, {"t": "p", "img": "img/239.jpg"}, {"t": "p", "img": "img/305.jpg"}, {"t": "p", "img": "img/311.jpg"}, {"t": "p", "img": "img/315.jpg"}, {"t": "p", "img": "img/318.jpg"}, {"t": "ch"}, {"t": "p", "img": "img/242.jpg"}, {"t": "p", "img": "img/243.jpg"}, {"t": "p", "img": "img/244.jpg"}, {"t": "p", "img": "img/246.jpg"}, {"t": "p", "img": "img/247.jpg"}, {"t": "p", "img": "img/250.jpg"}, {"t": "p", "img": "img/252.jpg"}, {"t": "p", "img": "img/253.jpg"}, {"t": "p", "img": "img/254.jpg"}, {"t": "p", "img": "img/261.jpg"}, {"t": "p", "img": "img/309.jpg"}, {"t": "p", "img": "img/317.jpg"}, {"t": "end"}];window.CFG={"transitions": ["projektor", "film", "migawka", "projektor", "film"]};</script>
+<script>(function(){
+"use strict";
+var S=window.SLIDES, M=window.META, CFG=window.CFG;
+var stage=document.getElementById('stage'), fx=document.getElementById('fx');
+var cnt=document.getElementById('cnt'), cur=0, busy=false, lastT='', auto=null;
+function $(id){return document.getElementById(id);}
+function photoNo(i){var k=0,t=0;for(var j=0;j<M.length;j++){if(M[j].t==='p'){t++;if(j<=i)k++;}}return [k,t];}
+function render(i){
+  stage.innerHTML='<div class="slide" id="cur">'+S[i]+'</div>';
+  var pn=photoNo(i);
+  cnt.textContent = M[i].t==='p' ? (pn[0]+' / '+pn[1]) : (M[i].t==='title'?'okładka':(M[i].t==='end'?'koniec':'rozdział'));
+  document.body.dataset.kind=M[i].t;
+  try{history.replaceState(null,'','#'+i);}catch(e){}
+  [i+1,i+2,i-1].forEach(function(j){if(M[j]&&M[j].img){var im=new Image();im.src=M[j].img;}});
+  bindInner();
+}
+function bindInner(){
+  var b=stage.querySelectorAll('[data-go]');
+  for(var k=0;k<b.length;k++){b[k].addEventListener('click',function(e){e.stopPropagation();var v=this.getAttribute('data-go');go(v==='next'?cur+1:parseInt(v,10));});}
+}
+/* ---------- dzwieki (WebAudio, wylaczone na start) ---------- */
+var ac=null, soundOn=false, sea=null;
+function A(){if(!ac){var C=window.AudioContext||window.webkitAudioContext;if(!C)return null;ac=new C();}if(ac.state==='suspended')ac.resume();return ac;}
+function noiseBuf(sec,brown){var a=A(),n=a.sampleRate*sec,b=a.createBuffer(1,n,a.sampleRate),d=b.getChannelData(0),l=0;for(var i=0;i<n;i++){var w=Math.random()*2-1;if(brown){l=(l+0.02*w)/1.02;d[i]=l*3.5;}else d[i]=w;}return b;}
+function burst(t,dur,f,type,vol,q){var a=A(),s=a.createBufferSource();s.buffer=noiseBuf(dur+0.05);var fl=a.createBiquadFilter();fl.type=type||'highpass';fl.frequency.value=f||2000;if(q)fl.Q.value=q;var g=a.createGain();g.gain.setValueAtTime(vol||0.3,a.currentTime+t);g.gain.exponentialRampToValueAtTime(0.001,a.currentTime+t+dur);s.connect(fl);fl.connect(g);g.connect(a.destination);s.start(a.currentTime+t);s.stop(a.currentTime+t+dur+0.05);}
+function tone(t,dur,f1,f2,type,vol,lp){var a=A(),o=a.createOscillator(),g=a.createGain();o.type=type||'sine';o.frequency.setValueAtTime(f1,a.currentTime+t);if(f2)o.frequency.exponentialRampToValueAtTime(f2,a.currentTime+t+dur);g.gain.setValueAtTime(0.0001,a.currentTime+t);g.gain.exponentialRampToValueAtTime(vol||0.1,a.currentTime+t+Math.min(0.08,dur/3));g.gain.exponentialRampToValueAtTime(0.0001,a.currentTime+t+dur);var last=g;if(lp){var fl=a.createBiquadFilter();fl.type='lowpass';fl.frequency.value=lp;g.connect(fl);last=fl;}o.connect(g);last.connect(a.destination);o.start(a.currentTime+t);o.stop(a.currentTime+t+dur+0.05);}
+var SND={
+  migawka:function(){burst(0,0.03,3000,'highpass',0.5);burst(0.07,0.05,1800,'highpass',0.35);},
+  projektor:function(){burst(0,0.12,700,'lowpass',0.7);tone(0,0.15,110,60,'sine',0.35);burst(0.05,0.03,2500,'highpass',0.25);},
+  film:function(){for(var i=0;i<9;i++)burst(i*0.07,0.02,3500,'bandpass',0.3,3);},
+  flesz:function(){tone(0,0.45,1200,8000,'sine',0.025);burst(0.45,0.25,1500,'lowpass',0.8);tone(0.45,0.2,90,40,'sine',0.4);},
+  wywolywanie:function(){burst(0,1.2,500,'lowpass',0.25);for(var i=0;i<4;i++)tone(0.2+i*0.25,0.12,900+i*120,600,'sine',0.03);},
+  miech:function(){burst(0,0.5,600,'bandpass',0.35,1.5);burst(0.25,0.4,1200,'bandpass',0.2,1.5);},
+  gazeta:function(){for(var i=0;i<6;i++)burst(i*0.09,0.12,2500+Math.random()*2000,'bandpass',0.25,1.2);},
+  syrena:function(){tone(0,1.7,98,96,'sawtooth',0.12,500);tone(0,1.7,147,145,'sawtooth',0.08,500);},
+  mewa:function(){for(var i=0;i<3;i++){tone(i*0.32,0.28,1900,1100,'sine',0.05);tone(i*0.32,0.28,3800,2200,'sine',0.012);}}
+};
+function play(n){if(!soundOn||!SND[n])return;try{SND[n]();}catch(e){}}
+function startSea(){var a=A();if(!a||sea)return;var s=a.createBufferSource();s.buffer=noiseBuf(6,true);s.loop=true;var fl=a.createBiquadFilter();fl.type='lowpass';fl.frequency.value=450;var g=a.createGain();g.gain.value=0.05;var lfo=a.createOscillator(),lg=a.createGain();lfo.frequency.value=0.09;lg.gain.value=0.035;lfo.connect(lg);lg.connect(g.gain);s.connect(fl);fl.connect(g);g.connect(a.destination);s.start();lfo.start();sea={s:s,g:g,l:lfo};}
+function stopSea(){if(sea){try{sea.s.stop();sea.l.stop();}catch(e){}sea=null;}}
+function toggleSound(){soundOn=!soundOn;var b=$('bSnd');b.innerHTML=(soundOn?'🔊':'🔇')+'<span class="lbl"> Dźwięk</span>';b.setAttribute('aria-pressed',soundOn);if(soundOn){A();startSea();play('mewa');}else stopSea();}
+/* ---------- przejscia ---------- */
+function wait(ms){return new Promise(function(r){setTimeout(r,ms);});}
+function clsAnim(el,c,ms){el.classList.add(c);return wait(ms).then(function(){el.classList.remove(c);});}
+var T={
+  flesz:function(sw){fx.innerHTML='<div class="flash"></div><div class="puff"></div>';return wait(soundOn?440:60).then(function(){fx.firstChild.classList.add('go');fx.lastChild.classList.add('go');return wait(110);}).then(function(){sw();return wait(800);}).then(function(){fx.innerHTML='';});},
+  migawka:function(sw){fx.innerHTML='<svg class="iris" viewBox="-100 -100 200 200" preserveAspectRatio="xMidYMid slice"><path fill-rule="evenodd"/><g class="bl"></g></svg>';
+    var p=fx.querySelector('path'),gl=fx.querySelector('.bl');
+    function draw(r,rot){var d='M-1000 -1000H1000V1000H-1000Z',pts=[],ls='';for(var k=0;k<6;k++){var a=rot+k*Math.PI/3;pts.push([Math.cos(a)*r,Math.sin(a)*r]);}
+      d+='M'+pts.map(function(q){return q[0].toFixed(2)+' '+q[1].toFixed(2);}).join('L')+'Z';p.setAttribute('d',d);
+      for(k=0;k<6;k++){var q=pts[k],a2=rot+k*Math.PI/3+Math.PI/2.4;ls+='<line x1="'+q[0].toFixed(2)+'" y1="'+q[1].toFixed(2)+'" x2="'+(q[0]+Math.cos(a2)*300).toFixed(2)+'" y2="'+(q[1]+Math.sin(a2)*300).toFixed(2)+'"/>';}gl.innerHTML=ls;}
+    function anim(from,to,ms){return new Promise(function(res){var t0=performance.now();function f(t){var k=Math.min(1,(t-t0)/ms),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2,r=from+(to-from)*e;draw(Math.max(r,0.001),(1-r/160)*1.4);if(k<1)requestAnimationFrame(f);else res();}requestAnimationFrame(f);});}
+    return anim(160,0,380).then(function(){sw();return wait(140);}).then(function(){return anim(0,160,480);}).then(function(){fx.innerHTML='';});},
+  film:function(sw,dir){fx.innerHTML='<div class="strip'+(dir<0?' rev':'')+'"><i></i><i></i><i></i></div>';return wait(420).then(function(){sw();return wait(600);}).then(function(){fx.innerHTML='';});},
+  projektor:function(sw){fx.innerHTML='<div class="dark"></div>';return wait(160).then(function(){sw();var c=$('cur');c.classList.add('drop');fx.firstChild.classList.add('out');return wait(700);}).then(function(){fx.innerHTML='';});},
+  wywolywanie:function(sw){fx.innerHTML='<div class="safe"></div>';var el=fx.firstChild;return wait(260).then(function(){sw();var c=$('cur');c.classList.add('dev');el.classList.add('out');setTimeout(function(){if(el.parentNode)el.remove();},2100);return wait(700);});},
+  miech:function(sw){var c=$('cur');c.classList.add('shrink');return wait(330).then(function(){sw();var n=$('cur');n.classList.add('grow');return wait(650);}).then(function(){var n=$('cur');if(n)n.classList.remove('grow');});},
+  gazeta:function(sw){var c=$('cur');c.classList.add('fade');return wait(200).then(function(){sw();var n=$('cur');n.classList.add('spin');return wait(1000);}).then(function(){var n=$('cur');if(n)n.classList.remove('spin');});}
+};
+function gull(){var g=document.createElement('div');g.className='gull';g.innerHTML='<svg viewBox="0 0 120 50"><use href="#g-mewa"/></svg>';g.style.top=(8+Math.random()*30)+'%';document.body.appendChild(g);play('mewa');setTimeout(function(){g.remove();},4200);}
+function go(n,force){
+  if(n<0||n>=S.length||busy||(n===cur&&!force))return;
+  var dir=n>cur?1:-1;busy=true;var list=CFG.transitions,name;
+  do{name=list[Math.floor(Math.random()*list.length)];}while(name===lastT&&list.length>1&&Math.random()<0.8);
+  lastT=name;play(name);
+  if(M[n].t==='ch')setTimeout(function(){play('syrena');},400);
+  var target=n;
+  T[name](function(){cur=target;render(target);},dir).then(function(){busy=false;if(Math.random()<0.13&&M[n].t==='p')gull();},function(){busy=false;});
+}
+function next(){go(cur+1);} function prev(){go(cur-1);}
+/* ---------- sterowanie ---------- */
+document.addEventListener('keydown',function(e){
+  if(e.altKey||e.ctrlKey||e.metaKey)return;
+  var k=e.key;
+  if(k==='ArrowRight'||k===' '||k==='PageDown'||k==='Enter'){e.preventDefault();next();}
+  else if(k==='ArrowLeft'||k==='PageUp'||k==='Backspace'){e.preventDefault();prev();}
+  else if(k==='Home'){go(0);} else if(k==='End'){go(S.length-1);}
+  else if(k==='f'||k==='F'){fs();} else if(k==='m'||k==='M'){toggleSound();}
+  else if(k==='p'||k==='P'){toggleAuto();} else if(k==='s'||k==='S'){toc();}
+  else if(k==='Escape'){$('toc').hidden=true;}
+});
+stage.addEventListener('click',function(e){if(e.target.closest('a,button'))return;var x=e.clientX/window.innerWidth;if(x<0.3)prev();else next();});
+var tx=null,ty=null;
+stage.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;ty=e.touches[0].clientY;},{passive:true});
+stage.addEventListener('touchend',function(e){if(tx===null)return;var dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)){e.preventDefault();dx<0?next():prev();}tx=null;});
+function fs(){var d=document;if(!d.fullscreenElement){(d.documentElement.requestFullscreen||function(){}).call(d.documentElement);}else{d.exitFullscreen();}}
+function toggleAuto(){var b=$('bAuto');if(auto){clearTimeout(auto);auto=null;b.innerHTML='▶<span class="lbl"> Pokaz sam</span>';b.setAttribute('aria-pressed','false');return;}b.innerHTML='⏸<span class="lbl"> Zatrzymaj</span>';b.setAttribute('aria-pressed','true');(function tick(){auto=setTimeout(function(){if(cur>=S.length-1){toggleAuto();return;}next();tick();},M[cur].t==='p'?8000:4500);})();}
+function toc(){var t=$('toc');t.hidden=!t.hidden;}
+$('bPrev').onclick=prev;$('bNext').onclick=next;$('bSnd').onclick=toggleSound;$('bAuto').onclick=toggleAuto;$('bFs').onclick=fs;$('bToc').onclick=toc;
+$('toc').addEventListener('click',function(e){var a=e.target.closest('[data-j]');if(a){$('toc').hidden=true;go(parseInt(a.getAttribute('data-j'),10));}else if(e.target===this){this.hidden=true;}});
+window.addEventListener('hashchange',function(){var j=parseInt((location.hash||'#0').slice(1),10);if(j>=0&&j<S.length&&j!==cur){cur=j;render(j);}});
+var h=parseInt((location.hash||'#0').slice(1),10);cur=(h>=0&&h<S.length)?h:0;render(cur);
+})();
+</script>
+</body></html>
